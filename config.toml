@@ -1,0 +1,8 @@
+# EXAMPLE CONFIG VARIABLES
+
+WATCH_FILE = "/path/to/file.txt"
+USER_FOLDER = "Folder name"
+BACKEND_URL = "http://localhost:3301/example"
+
+STABILITY_WAIT = 1
+DEBOUNCE_SECONDS = 1

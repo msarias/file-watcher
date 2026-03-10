@@ -1,15 +1,18 @@
 import time
+import tomllib
 import requests
 from pathlib import Path
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-# CONFIG VARS
-WATCH_FILE = Path("/path/to/file.txt")
-USER_FOLDER = "Folder name"
-BACKEND_URL = "http://localhost:3301/example"
-STABILITY_WAIT = 1
-DEBOUNCE_SECONDS = 1
+with open("config.toml", "rb") as f:
+    config = tomllib.load(f)
+
+WATCH_FILE = Path(config["WATCH_FILE"])
+USER_FOLDER = config["USER_FOLDER"]
+BACKEND_URL = config["BACKEND_URL"]
+STABILITY_WAIT = config["STABILITY_WAIT"]
+DEBOUNCE_SECONDS = config["DEBOUNCE_SECONDS"]
 
 def upload_file(file_path: Path, user_folder: str) -> None:
     """Send the file to the backend."""
@@ -103,4 +106,3 @@ def start_watcher() -> None:
 
 if __name__ == "__main__":
     start_watcher()
-    
